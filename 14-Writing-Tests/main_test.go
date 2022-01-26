@@ -2,6 +2,7 @@ package main
 
 import "testing"
 
+// The "RIGHT" way to write tests. Collect Test Cases and iterate then and run your checks
 var tests = []struct {
 	name     string
 	dividend float32
@@ -31,6 +32,8 @@ func TestDivisionUsingTestStruct(t *testing.T) {
 		}
 	}
 }
+
+// Manual Test - One each for the Scenarios
 func TestDivide(t *testing.T) {
 	_, err := divide(10, 1)
 	if err != nil {
