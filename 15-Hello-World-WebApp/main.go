@@ -1,15 +1,21 @@
 package main
 
 import (
-	"fmt"
+	"io"
+	"log"
 	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello World, This is a Go Web Application!")
-	})
+	h1 := func(w http.ResponseWriter, _ *http.Request) {
+		io.WriteString(w, "Hello from HandleFucntion#1!\n")
+	}
+	h2 := func(w http.ResponseWriter, _ *http.Request) {
+		io.WriteString(w, "Hello from HandleFunction#2!\n")
+	}
+	http.HandleFunc("/", h1)
+	http.HandleFunc("/endpoint", h2)
 
-	http.ListenAndServe(":8081", nil)
+	log.Fatal(http.ListenAndServe(":8081", nil))
 
 }
